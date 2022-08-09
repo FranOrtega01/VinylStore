@@ -1,0 +1,41 @@
+.albumDiv{
+    padding: 1rem;
+    article{
+        background-color: $headerBG;
+        border-radius: .5rem;
+        padding: 3rem;
+        *{
+            color: $lightGrey;
+        }
+        img{
+            align-self: center;
+            border-radius: 3px;
+            width: 100%;
+        }
+        h2{
+            font-size: 2.5rem;
+            margin: 1.2rem 0;
+        }
+        button{
+            all: unset;
+            cursor: pointer;
+            border-radius: 3px;
+            background-color: $lightGrey;
+            padding:1rem 1.5rem;
+            color: $headerBG;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 1.7rem;
+            transition: all 300ms;
+            // &:hover{
+            //     background-color: rgb(16, 15, 15);
+            //     color: $lightGrey;
+            // }
+        }
+    }
+}
+.albumArtist, .albumYear, .albumPrice{
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 1.2rem 0;
+}

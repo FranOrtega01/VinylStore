@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth; }
+
+body, html {
+  font-size: 10px; }
+
+body {
+  background-color: #212121; }
+
+header {
+  width: 100%;
+  background-color: #1c1c1c;
+  display: flex;
+  justify-content: right;
+  padding-right: 2rem; }
+  header button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    margin-right: 5rem; }
+  header i {
+    color: #e6e6e6;
+    padding: 2rem 1rem;
+    font-size: 2.2rem;
+    cursor: pointer; }
+  header span {
+    color: #e6e6e6;
+    font-size: 1.8rem; }
+
+.dropdown-menu.show {
+  background-color: #1c1c1c;
+  display: flex;
+  flex-direction: column; }
+
+.dropdown-item {
+  color: #e6e6e6;
+  font-size: 1.5rem;
+  padding: 1rem;
+  width: 90%; }
+  .dropdown-item:hover, .dropdown-item:focus {
+    background-color: #1c1c1c;
+    color: #e6e6e6; }
+  .dropdown-item:hover {
+    background-color: #212121; }
+
+.modal-open {
+  overflow-y: hidden; }
+
+h1 {
+  font-size: 5rem;
+  color: #e6e6e6;
+  text-align: center;
+  margin: 7rem 0; }
+
+#albums {
+  margin: 0 auto; }
+
+.albumDiv {
+  padding: 1rem; }
+  .albumDiv article {
+    background-color: #1c1c1c;
+    border-radius: .5rem;
+    padding: 3rem; }
+    .albumDiv article * {
+      color: #e6e6e6; }
+    .albumDiv article img {
+      align-self: center;
+      border-radius: 3px;
+      width: 100%; }
+    .albumDiv article h2 {
+      font-size: 2.5rem;
+      margin: 1.2rem 0; }
+    .albumDiv article button {
+      all: unset;
+      cursor: pointer;
+      border-radius: 3px;
+      background-color: #e6e6e6;
+      padding: 1rem 1.5rem;
+      color: #1c1c1c;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 1.7rem;
+      transition: all 300ms; }
+
+.albumArtist, .albumYear, .albumPrice {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 1.2rem 0; }
+
+.modal-header {
+  background: #1c1c1c;
+  color: #e6e6e6;
+  border-bottom: 2px solid #212121; }
+  .modal-header div {
+    display: flex;
+    justify-content: flex-end; }
+    .modal-header div i {
+      padding: 0; }
+    .modal-header div button {
+      margin: 1rem; }
+  .modal-header h5 {
+    font-size: 2rem; }
+
+.modal-body {
+  background: #1c1c1c;
+  min-height: 400px; }
+  .modal-body::-webkit-scrollbar {
+    width: 7px;
+    height: 30px;
+    background-color: transparent; }
+  .modal-body::-webkit-scrollbar-thumb {
+    background-color: #e6e6e6;
+    border-radius: 30px; }
+  .modal-body img {
+    border-radius: 3px; }
+
+.modal-content {
+  background: #1c1c1c; }
+
+.modal-footer {
+  border-top: 2px solid #212121; }
+  .modal-footer span {
+    margin-right: 1rem; }
+
+.cartDiv {
+  display: flex;
+  margin-bottom: 2rem;
+  width: 100%;
+  position: relative; }
+  .cartDiv * {
+    color: #e6e6e6; }
+  .cartDiv img {
+    width: 30%;
+    margin-right: 1rem; }
+  .cartDiv button {
+    position: absolute;
+    margin: 0;
+    right: 0;
+    top: 0;
+    cursor: pointer; }
+    .cartDiv button i {
+      padding: 0;
+      font-size: 1.5rem; }

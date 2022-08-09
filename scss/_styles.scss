@@ -1,0 +1,60 @@
+body{
+    background-color: $bodyBG;
+}
+
+header{
+    width: 100%;
+    background-color: $headerBG;
+    display: flex;
+    justify-content: right;
+    padding-right: 2rem;
+    button{
+        all: unset;
+        display: flex;
+        align-items: center;
+        margin-right: 5rem;
+    }
+    i{
+        color: $lightGrey;
+        padding: 2rem 1rem;
+        font-size: 2.2rem;
+        cursor: pointer;
+    }
+    span{
+        color: $lightGrey;
+        font-size: 1.8rem;
+    }
+}
+//Dropdown
+.dropdown-menu.show{
+    background-color: $headerBG;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-item{
+    color: $lightGrey;
+    font-size: 1.5rem;
+    padding: 1rem;
+    width: 90%;
+    // margin: 0;
+    &:hover, &:focus{
+        background-color: $headerBG;
+        color: $lightGrey;
+    }
+    &:hover{
+        background-color: $bodyBG;
+    }
+}
+.modal-open{
+    overflow-y: hidden;
+}
+h1{
+    font-size: 5rem;
+    color: $lightGrey;
+    text-align: center;
+    margin:7rem 0;
+}
+#albums{
+    margin: 0 auto;
+}

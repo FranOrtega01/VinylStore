@@ -1,0 +1,17 @@
+//Color Palette
+$bodyBG: rgb(33, 33, 33);
+$headerBG: rgb(28, 28, 28);
+$lightGrey: rgb(230, 230, 230);
+
+//Reset
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+body,html{
+    font-size: 10px;
+}
