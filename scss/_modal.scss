@@ -19,7 +19,6 @@
 .modal-body{
     background: $headerBG;
     min-height: 400px;
-
     &::-webkit-scrollbar{
         width: 7px;
         height: 30px;
@@ -39,9 +38,8 @@
 }
 .modal-footer{
     border-top: 2px solid $bodyBG;
-    span{
-        margin-right: 1rem;
-    }
+    display: flex;
+    justify-content: space-around;
 }
 
 .cartDiv{

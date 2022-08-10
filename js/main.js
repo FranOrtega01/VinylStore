@@ -1,14 +1,12 @@
 const cartInfo = document.getElementById('cart'); //Número de elementos en el carrito mostrado en la página
-const cartInfoModal = document.getElementById('totalPrice');
+const cartInfoPriceModal = document.getElementById('totalPrice');
+const cartInfoQtyModal = document.getElementById('totalQty');
+
 const cartDisplay = document.getElementById('guti');
 let albumList = []; //Array con los productos de mi tienda
 const carrito = JSON.parse(localStorage.getItem('carrito')) ?? [];
 let carritoPrice = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
 const totalCarrito = localStorage.getItem('CantidadDeProductos');
-
-cartInfo.innerHTML = `${totalCarrito} - $${carritoPrice}`;
-cartInfoModal.innerHTML = `Total: $${carritoPrice}`
-
 localStorage.setItem('CantidadDeProductos',carrito.length);
 refreshCart()
 
@@ -24,12 +22,22 @@ function NewAlbum(id,album,artist,year,price,img,gender){
 
 //Agregar un album mediante la constructora
 function addAlbum(id,album,artist,year,price,img,gender){
-    albumList.push(new NewAlbum(id,album,artist,year,price,img,gender));
+    let guti = new NewAlbum(id,album,artist,year,price,img,gender);
+    guti.cantidad = 1;
+    albumList.push(guti)
 } 
 
-function cart(id){
+function cart(id){    
     let objeto = albumList.find((el) => el.id === id); //Busca el elemento con esa id y lo agrega al carrito
-    carrito.push(objeto);
+    let objetoCarrito = carrito.find((el) => el.id === id);
+    if(objetoCarrito == undefined){
+        carrito.push(objeto);
+        objetoCarrito = carrito.find((el) => el.id === id);
+        objetoCarrito.cantidad = 1;
+    }
+    else{
+        objetoCarrito.cantidad++;
+    }
     //Actualizar precio y numero del carrito
     localStorage.setItem('CantidadDeProductos',carrito.length)
     refreshCart();
@@ -38,10 +46,22 @@ function cart(id){
 //Remover producto del carrito
 function removerProductoCart(id){
     let indexCart = carrito.findIndex((producto) => producto.id === id); //Busca el index del id indicado
-    if (indexCart !== -1){
-        carrito.splice(indexCart,1); //Borra el elemento con la id indicada
+    if (indexCart !== -1 && carrito[indexCart].cantidad > 1){ 
+        carrito[indexCart].cantidad--;
         refreshCart()
     }
+    if (indexCart !== -1 && carrito[indexCart].cantidad == 1){ 
+        carrito.splice([indexCart],1)
+        refreshCart()
+    }
+    // if (indexCart !== -1 && carrito[indexCart].cantidad > 1){ 
+    //     carrito[indexCart].cantidad--;
+    //     refreshCart()
+    // }
+    // if (indexCart !== -1 && carrito[indexCart].cantidad == 1){ 
+    //     carrito/splice([indexCart],1)
+    //     refreshCart()
+    // }
     localStorage.setItem('CantidadDeProductos',carrito.length)
 }
 //----------------------------------
@@ -53,7 +73,7 @@ btnVaciarCarrito.addEventListener('click', () => {
     console.log('Se vació el carrito!')
     localStorage.setItem('CantidadDeProductos',carrito.length);
     // cartInfo.innerHTML = `${carrito.length} - $${carritoPrice}`;
-    // cartInfoModal.innerHTML = `Total: $${carritoPrice}`
+    // cartInfoPriceModal.innerHTML = `Total: $${carritoPrice}`
     refreshCart();
 });
 //----------------------------------
@@ -108,9 +128,12 @@ albumsInStore.appendChild(fragment);
 // }
 function refreshCart(){
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    let carritoPrice = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
-    cartInfo.innerHTML = `${carrito.length} - $${carritoPrice}`;
-    cartInfoModal.innerHTML = `Total: $${carritoPrice}`
+    let carritoPrice = carrito.reduce((acumulador, producto) => acumulador + producto.price*producto.cantidad, 0);
+    let carritoNumber = carrito.reduce((acumulador, producto) => acumulador + producto.cantidad, 0);
+    cartInfo.innerHTML = `${carritoNumber} - $${carritoPrice}`;
+    cartInfoPriceModal.innerHTML = `Total: $${carritoPrice}`;
+    cartInfoQtyModal.innerHTML = `Qty: ${carritoNumber}`;
+
     cartDisplay.innerHTML = '';
     carrito.forEach(element => {
     cartDisplay.innerHTML +=
@@ -119,11 +142,11 @@ function refreshCart(){
         <div class="cartAlbumInfo">
             <h2 class="album">${element.album}</h2>
             <p class="albumArtist">${element.artist}</p>
-            <p class="albumPrice">$${element.price}.00</p>
+            <p class="albumPrice">Price: $${element.price}.00</p>
+            <p class="albumCantidad">Quantity: ${element.cantidad}</p>
         </div>
         <button onclick="removerProductoCart(${element.id})"><i class="fa-solid fa-xmark"></i></button>
     </div>`
 });
 }
 //----------------------------------
-
