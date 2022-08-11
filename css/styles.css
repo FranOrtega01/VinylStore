@@ -62,20 +62,20 @@ h1 {
 
 .albumDiv {
   padding: 1rem; }
-  .albumDiv article {
+  .albumDiv div {
     background-color: #1c1c1c;
     border-radius: .5rem;
     padding: 3rem; }
-    .albumDiv article * {
+    .albumDiv div * {
       color: #e6e6e6; }
-    .albumDiv article img {
+    .albumDiv div img {
       align-self: center;
       border-radius: 3px;
       width: 100%; }
-    .albumDiv article h2 {
-      font-size: 2.5rem;
+    .albumDiv div h2 {
+      font-size: 1.2vw;
       margin: 1.2rem 0; }
-    .albumDiv article button {
+    .albumDiv div button {
       all: unset;
       cursor: pointer;
       border-radius: 3px;
@@ -146,3 +146,22 @@ h1 {
     .cartDiv button i {
       padding: 0;
       font-size: 1.5rem; }
+
+.toastAlert {
+  background: #1c1c1c;
+  font-size: 1.5em;
+  box-shadow: 0px 3px 6px -1px rgba(0, 0, 0, 0.12), 0px 10px 36px -4px rgba(112, 114, 125, 0.3); }
+
+.toastify-avatar {
+  width: 2.5em;
+  height: 2.5em; }
+
+.swal2-title {
+  font-size: 2.4em; }
+
+.swal2-html-container {
+  font-size: 1.5em;
+  font-weight: 500; }
+
+.swal2-styled.swal2-confirm, .swal2-styled.swal2-cancel {
+  font-size: 1.2em; }

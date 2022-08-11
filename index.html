@@ -4,23 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Vinyl Store</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://kit.fontawesome.com/a4c52e9ef0.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <link rel="stylesheet" href="css/styles.css">
 
-    <script src="https://kit.fontawesome.com/a4c52e9ef0.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <header>
         <!-- Button trigger modal -->
-        <button type="button" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" data-toggle="modal" data-target="#CartModal">
             <i class="fa-solid fa-cart-shopping"></i>
             <span id="cart"></span>
         </button>
         <!-- Scrollable modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="CartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -59,14 +65,14 @@
     <!-- Album Template -->
     <template id="templateAlbum">
         <div class="albumDiv col-3">
-            <article>
+            <div>
                 <img class="img-fluid">
                 <h2 class="album"></h2>
                 <p class="albumArtist"></p>
                 <p class="albumYear"></p>
                 <p class="albumPrice"></p>
                 <button class="add">Add to cart</button>
-            </article>
+            </div>
         </div>
     </template>
     <!-- Cart Template -->
@@ -77,6 +83,7 @@
                 <h2 class="album"></h2>
                 <p class="albumArtist"></p>
                 <p class="albumPrice"></p>
+                <p class="albumCantidad"></p>
             </div>
             <button><i class="fa-solid fa-xmark"></i></button>
         </div>
