@@ -28,12 +28,12 @@ function addAlbum(id,album,artist,year,price,img,gender){
     albumList.push(guti)
 } 
 
-function cart(id){    
-    let objeto = albumList.find((el) => el.id === id); //Busca el elemento con esa id y lo agrega al carrito
-    let objetoCarrito = carrito.find((el) => el.id === id);
+function cart(idProduct){    
+    let objeto = albumList.find(({id}) => id === idProduct); //Busca el elemento con esa id y lo agrega al carrito
+    let objetoCarrito = carrito.find(({id}) => id === idProduct);
     if(objetoCarrito == undefined){
         carrito.push(objeto);
-        objetoCarrito = carrito.find((el) => el.id === id);
+        objetoCarrito = carrito.find(({id}) => id === idProduct);
         objetoCarrito.cantidad = 1;
     }else{
         objetoCarrito.cantidad++;
@@ -55,8 +55,8 @@ function cart(id){
 }
 
 //Remover producto del carrito
-function removerProductoCart(id){
-    let indexCart = carrito.findIndex((producto) => producto.id === id); //Busca el index del id indicado
+function removerProductoCart(idProducto){
+    let indexCart = carrito.findIndex(({id}) => id === idProducto); //Busca el index del id indicado
     if (indexCart !== -1 && carrito[indexCart].cantidad == 1){ 
         carrito.splice([indexCart],1);
         refreshCart();
@@ -135,7 +135,7 @@ const fragment = document.createDocumentFragment();
 albumList.forEach(item => {
     templateProduct.querySelector('h2').textContent = item.album;
     templateProduct.querySelector('img').src = item.img;
-    templateProduct.querySelector('.albumArtist').textContent = item.artist;
+    templateProduct.querySelector('.albumArtist').textContent = `${item.artist} - ${item.gender}`;
     templateProduct.querySelector('.albumYear').textContent = item.year;
     templateProduct.querySelector('.albumPrice').textContent = `$${item.price}.00`;
     templateProduct.querySelector('button').dataset.id = item.id;
@@ -181,3 +181,4 @@ addBtn.forEach(btn => {
         cart(id)
     })
 });
+
