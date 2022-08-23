@@ -12,10 +12,6 @@ let carritoNumber = carrito.reduce((acumulador, {cantidad}) => acumulador + cant
 const albumsInCart = document.querySelector('.modal-body');
 const coinSelect = document.getElementById('coins');
 
-
-
-
-
 function NewAlbum(id,album,artist,year,price,img,gender){
     this.id = id;
     this.album = album;
@@ -94,7 +90,6 @@ btnVaciarCarrito.addEventListener('click', () => {
                 'Deleted!',
                 'Cart is now empty!',)
             carrito.splice(0,carrito.length); //Vacia el carrito
-            console.log('Se vació el carrito!')
             refreshCart();
         }
         })
@@ -130,6 +125,14 @@ addAlbum(21,`Let It Be`, 'The Beatles',1970,55,'https://i.scdn.co/image/ab67616d
 addAlbum(22,`Rubber Soul`, 'The Beatles',1965,50,'https://i.scdn.co/image/ab67616d00001e02ed801e58a9ababdea6ac7ce4','rock');
 addAlbum(23,`Please Please Me`, 'The Beatles',1963,50,'https://i.scdn.co/image/ab67616d00001e02dbeec63ad914c973e75c24df','rock');
 addAlbum(24,`Get Back`, 'The Beatles',2022,52,'https://i.scdn.co/image/ab67616d00001e0204167cd5b7ddbf5c4a563456','rock');
+
+addAlbum(25,`Y Amigos`, 'Los Abuelos De La Nada',2021,30,'https://i.scdn.co/image/ab67616d00001e02e24ea1fbef45aa66e2c8e73d','Rock Nacional');
+addAlbum(26,`Himnos Del Corazón`, 'Los Abuelos De La Nada',2006,30,'https://i.scdn.co/image/ab67616d00001e0237d87946cc6a3ed79d72474c','Rock Nacional');
+addAlbum(27,`En El Opera`, 'Los Abuelos De La Nada',2022,30,'https://i.scdn.co/image/ab67616d00001e02c2d670098e559803460ad345','Rock Nacional');
+addAlbum(28,`Los Abuelos De La Nada 2`, 'Los Abuelos De La Nada',2022,30,'https://i.scdn.co/image/ab67616d00001e02377cdedc05284d379cbfcee1','Rock Nacional');
+addAlbum(29,`Los Abuelos De La Nada 1`, 'Los Abuelos De La Nada',1995,30,'https://i.scdn.co/image/ab67616d00001e02ac8e4606429b148f6d2ba11d','Rock Nacional');
+
+
 
 function refreshCart(){
     //Refresh info
@@ -278,7 +281,6 @@ function generateFilters(){
             genders.push(album.gender)
         }
     })
-    console.log(genders);
     const filtersInCanvas = document.querySelector('.checkbox');
     let acumulador = ''
     genders.forEach(item => {
@@ -306,32 +308,26 @@ coins.forEach(el => {
 });
 coinSelect.innerHTML = acumuladorCoin;
 coinSelect.addEventListener('change', exchange);
-
-// let coinFirstTime = true;
-// console.log(carritoPrice)
 refreshCart()
 refreshIndex(albumList)
 let temp = 'USD'
 let coinState = JSON.parse(localStorage.getItem('coinState')) ?? 'USD';
 
-//Reset (temporal)
+//Reset (temporal) - Vuelve todo a Dolar
 fetch(`https://api.exchangerate-api.com/v4/latest/${temp}`)
     .then(res => res.json())
     .then(data => {
-        console.log(data.rates[coinState])
         carritoPrice *= data.rates[coinState]
-        console.log(carritoPrice)
         carrito.forEach(album => {
-            console.log(album.price);
             album.price /= data.rates[coinState]
             album.price = Number((album.price).toFixed(0))
-            console.log(album.price);
         })
         coinState = 'USD'
         localStorage.setItem('coinState', JSON.stringify(coinState))
         refreshCart()
         refreshIndex(albumList)
 
+        //Actualizar album con los precios de la moneda
         rangeNumber.min = 25
         rangeNumber.max = 80
         rangeNumber.value = 70
@@ -344,22 +340,22 @@ fetch(`https://api.exchangerate-api.com/v4/latest/${temp}`)
     });
 
 function exchange(){
-    // let guti = coinSelect.value
     coinState = coinSelect.value
-    fetch(`https://api.exchangerate-api.com/v4/latest/${temp}`)
+    fetch(`https://api.exchangerate-api.com/v4/latest/${temp}`) 
         .then(res => res.json())
         .then(data => {
-            console.log(data.rates[coinState])
             carrito.forEach(album => {
                 album.price *= data.rates[coinState]
                 album.price = Number((album.price).toFixed(0))
             })
             refreshCart()
+            //Actualizar album con los precios de la moneda
             let exchangedAlbum = albumList;
             exchangedAlbum.forEach(album => {
                 album.price *= data.rates[coinState]
                 album.price = Number((album.price).toFixed(0))
             })
+            //Update filter inputs values
             rangeNumber.min = 3500
             rangeNumber.max = 11000
             rangeNumber.value = 9000
@@ -376,3 +372,8 @@ function exchange(){
     localStorage.setItem('coinState', JSON.stringify(coinState))
 }
 
+//Animacion tuerca
+const gear = document.querySelector('.btn-group i')
+gear.addEventListener('click', () => {
+    gear.classList.toggle('rotate');
+})
