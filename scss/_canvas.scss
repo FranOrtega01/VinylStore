@@ -1,0 +1,233 @@
+.filterSection{
+  margin-bottom: 8rem;
+}
+
+.canvasSubtitle{
+  font-size: 2rem;
+  color: $lightGrey;
+  margin: 2rem 0;
+
+}
+//Off Canvas
+.offcanvas{
+  background-color: rgba(34, 29, 40, 0.98);
+  h5{
+      font-size: 3.5rem;
+      color: $lightGrey;
+  }
+  button{
+      color: $lightGrey;
+      font-size: 2rem;
+  }
+}
+.offcanvas-body {
+    padding: 1rem 2rem;
+    span{
+        font-size: 2rem;
+    }
+    div{
+    color: $lightGrey;
+    font-size: 2rem;
+    }
+    &::-webkit-scrollbar{
+      width: 7px;
+      height: 30px;
+      background-color: rgba(34, 29, 40, 0.98);
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color:$lightGrey;
+        border-radius: 30px;
+    }
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  margin-right: 15px;
+  width: 200px;
+  height: 7px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  background-image: linear-gradient($violet, $violet);
+  background-size: 75% 100%;
+  background-repeat: no-repeat;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: $violet;
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background .3s ease-in-out;
+  }
+  
+  input[type=range]::-webkit-slider-runnable-track  {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+  }
+  
+  
+#rangeValue{
+    all: unset;
+    width: 60px;
+    font-size: 2rem;
+    color: $lightGrey;
+    caret-color: $violet;
+    margin-bottom: 20px;
+}
+.checkbox{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+    div{
+        margin: .4rem 0;
+    }
+    input{
+        margin-right: .5rem;
+    }
+}
+
+/* Customize the label (the container) */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+/* Create a custom checkbox */
+/* Hide the default checkbox */
+.container input {
+    visibility: hidden;
+    cursor: pointer;
+  }
+  
+  /* Create a custom checkbox */
+  .mark {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 4px;
+    background-color: lightgray;
+  }
+  
+  .container:hover input ~ .mark {
+    background-color: rgb(171, 171, 171);
+  }
+  
+  .container input:checked ~ .mark {
+    background-color: #7066e0;
+  }
+  
+  /* Create the mark/indicator (hidden when not checked) */
+  .mark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the mark when checked */
+  .container input:checked ~ .mark:after {
+    display: block;
+  }
+  
+  /* Style the mark/indicator */
+  .container .mark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }
+
+  //Radio
+
+/* Customize the label (the container) */
+.containerRadio {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.containerRadio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmarkRadio {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+/* On mouse-over, add a grey background color */
+.containerRadio:hover input ~ .checkmarkRadio {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.containerRadio input:checked ~ .checkmarkRadio {
+  background-color: $violet;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmarkRadio:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.containerRadio input:checked ~ .checkmarkRadio:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.containerRadio .checkmarkRadio:after {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: white;
+}

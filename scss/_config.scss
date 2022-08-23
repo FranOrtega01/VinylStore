@@ -1,0 +1,17 @@
+#coins{
+    border: none;
+    color: $lightGrey;
+    padding: 10px 20px 10px 10px;
+    font-size: 16px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: $headerBG;
+    width: 75%;
+    cursor: pointer;
+    &:focus-visible{
+        border: none;
+        outline: none;
+    }
+}
+

@@ -16,8 +16,8 @@ header {
   width: 100%;
   background-color: #1c1c1c;
   display: flex;
-  justify-content: right;
-  padding-right: 2rem; }
+  justify-content: space-between;
+  padding-inline: 2rem; }
   header button {
     all: unset;
     display: flex;
@@ -30,7 +30,16 @@ header {
     cursor: pointer; }
   header span {
     color: #e6e6e6;
-    font-size: 1.8rem; }
+    font-size: 2rem;
+    font-weight: 600; }
+  header > div {
+    display: flex; }
+
+.btn-group i {
+  font-size: 2.4rem; }
+
+#canvasHamburger {
+  font-size: 2.6rem; }
 
 .dropdown-menu.show {
   background-color: #1c1c1c;
@@ -62,20 +71,43 @@ h1 {
 
 .albumDiv {
   padding: 1rem; }
-  .albumDiv div {
+  .albumDiv > div {
     background-color: #1c1c1c;
     border-radius: .5rem;
     padding: 3rem; }
-    .albumDiv div * {
+    .albumDiv > div * {
       color: #e6e6e6; }
-    .albumDiv div img {
+    .albumDiv > div img {
       align-self: center;
       border-radius: 3px;
       width: 100%; }
-    .albumDiv div h2 {
-      font-size: 1.2vw;
+    .albumDiv > div h2 {
       margin: 1.2rem 0; }
-    .albumDiv div button {
+      @media (min-width: 1400px) {
+        .albumDiv > div h2 {
+          font-size: 1.2vw; } }
+      @media (max-width: 1400px) {
+        .albumDiv > div h2 {
+          font-size: 1.2vw; } }
+      @media (max-width: 1200px) {
+        .albumDiv > div h2 {
+          font-size: 1.5vw; } }
+      @media (max-width: 991px) {
+        .albumDiv > div h2 {
+          font-size: 1.7vw; } }
+      @media (max-width: 900px) {
+        .albumDiv > div h2 {
+          font-size: 1.6vw; } }
+      @media (max-width: 768px) {
+        .albumDiv > div h2 {
+          font-size: 2.4vw; } }
+      @media (max-width: 576px) {
+        .albumDiv > div h2 {
+          font-size: 35px; } }
+      @media (max-width: 400px) {
+        .albumDiv > div h2 {
+          font-size: 30px; } }
+    .albumDiv > div button {
       all: unset;
       cursor: pointer;
       border-radius: 3px;
@@ -86,11 +118,24 @@ h1 {
       font-weight: 700;
       margin-top: 1.7rem;
       transition: all 300ms; }
+      .albumDiv > div button:hover {
+        background-color: #100f0f;
+        color: #e6e6e6; }
 
-.albumArtist, .albumYear, .albumPrice, .albumCantidad {
+.albumArtist {
+  margin: 0; }
+
+.albumYear, .albumPrice, .albumCantidad, .albumArtist, .guti {
   font-size: 1.3rem;
   font-weight: 500;
   margin: 1.2rem 0; }
+
+.guti {
+  display: flex;
+  align-items: center; }
+  .guti span {
+    opacity: .3;
+    margin-left: 1rem; }
 
 .modal-header {
   background: #1c1c1c;
@@ -147,6 +192,219 @@ h1 {
       padding: 0;
       font-size: 1.5rem; }
 
+#coins {
+  border: none;
+  color: #e6e6e6;
+  padding: 10px 20px 10px 10px;
+  font-size: 16px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #1c1c1c;
+  width: 75%;
+  cursor: pointer; }
+  #coins:focus-visible {
+    border: none;
+    outline: none; }
+
+.filterSection {
+  margin-bottom: 8rem; }
+
+.canvasSubtitle {
+  font-size: 2rem;
+  color: #e6e6e6;
+  margin: 2rem 0; }
+
+.offcanvas {
+  background-color: rgba(34, 29, 40, 0.98); }
+  .offcanvas h5 {
+    font-size: 3.5rem;
+    color: #e6e6e6; }
+  .offcanvas button {
+    color: #e6e6e6;
+    font-size: 2rem; }
+
+.offcanvas-body {
+  padding: 1rem 2rem; }
+  .offcanvas-body span {
+    font-size: 2rem; }
+  .offcanvas-body div {
+    color: #e6e6e6;
+    font-size: 2rem; }
+  .offcanvas-body::-webkit-scrollbar {
+    width: 7px;
+    height: 30px;
+    background-color: rgba(34, 29, 40, 0.98); }
+  .offcanvas-body::-webkit-scrollbar-thumb {
+    background-color: #e6e6e6;
+    border-radius: 30px; }
+
+input[type="range"] {
+  -webkit-appearance: none;
+  margin-right: 15px;
+  width: 200px;
+  height: 7px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  background-image: linear-gradient(#7066e0, #7066e0);
+  background-size: 75% 100%;
+  background-repeat: no-repeat; }
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #7066e0;
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background .3s ease-in-out; }
+
+input[type=range]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent; }
+
+#rangeValue {
+  all: unset;
+  width: 60px;
+  font-size: 2rem;
+  color: #e6e6e6;
+  caret-color: #7066e0;
+  margin-bottom: 20px; }
+
+.checkbox {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0; }
+  .checkbox div {
+    margin: .4rem 0; }
+  .checkbox input {
+    margin-right: .5rem; }
+
+/* Customize the label (the container) */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0; }
+
+/* Create a custom checkbox */
+/* Hide the default checkbox */
+.container input {
+  visibility: hidden;
+  cursor: pointer; }
+
+/* Create a custom checkbox */
+.mark {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 4px;
+  background-color: lightgray; }
+
+.container:hover input ~ .mark {
+  background-color: #ababab; }
+
+.container input:checked ~ .mark {
+  background-color: #7066e0; }
+
+/* Create the mark/indicator (hidden when not checked) */
+.mark:after {
+  content: "";
+  position: absolute;
+  display: none; }
+
+/* Show the mark when checked */
+.container input:checked ~ .mark:after {
+  display: block; }
+
+/* Style the mark/indicator */
+.container .mark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg); }
+
+/* Customize the label (the container) */
+.containerRadio {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* Hide the browser's default radio button */
+.containerRadio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0; }
+
+/* Create a custom radio button */
+.checkmarkRadio {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 4px; }
+
+/* On mouse-over, add a grey background color */
+.containerRadio:hover input ~ .checkmarkRadio {
+  background-color: #ccc; }
+
+/* When the radio button is checked, add a blue background */
+.containerRadio input:checked ~ .checkmarkRadio {
+  background-color: #7066e0; }
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmarkRadio:after {
+  content: "";
+  position: absolute;
+  display: none; }
+
+/* Show the indicator (dot/circle) when checked */
+.containerRadio input:checked ~ .checkmarkRadio:after {
+  display: block; }
+
+/* Style the indicator (dot/circle) */
+.containerRadio .checkmarkRadio:after {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: white; }
+
 .toastAlert {
   background: #1c1c1c;
   font-size: 1.5em;
@@ -164,4 +422,12 @@ h1 {
   font-weight: 500; }
 
 .swal2-styled.swal2-confirm, .swal2-styled.swal2-cancel {
-  font-size: 1.2em; }
+  font-size: 1.2em;
+  margin: 0 .7rem; }
+
+.swal2-confirm.swal2-styled.swal2-default-outline {
+  background-color: #2ebd6e; }
+
+.swal2-icon.swal2-warning {
+  border-color: #ffa04d;
+  color: #ffa04d; }

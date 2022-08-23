@@ -2,7 +2,8 @@
 $bodyBG: rgb(33, 33, 33);
 $headerBG: rgb(28, 28, 28);
 $lightGrey: rgb(230, 230, 230);
-
+$violet: #7066e0;
+//rgb(44 41 56 / 98%)
 //Reset
 *{
     margin: 0;
@@ -14,4 +15,32 @@ html{
 }
 body,html{
     font-size: 10px;
+}
+
+@mixin AlbumName{
+    @media (min-width:1400px){
+        font-size: 1.2vw;
+    }
+    @media (max-width:1400px){
+        font-size:1.2vw;
+    }
+    @media (max-width:1200px){
+        font-size:1.5vw;
+
+    }
+    @media (max-width:991px){
+        font-size:1.7vw;
+    }
+    @media (max-width:900px){
+        font-size:1.6vw;
+    }
+    @media (max-width:768px){
+        font-size:2.4vw;
+    }
+    @media (max-width:576px){
+    font-size:35px;
+    }
+    @media (max-width:400px){
+        font-size:30px;
+        }
 }

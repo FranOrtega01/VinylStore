@@ -18,4 +18,13 @@
 }
 .swal2-styled.swal2-confirm, .swal2-styled.swal2-cancel{
     font-size: 1.2em;
+    margin: 0 .7rem;
+}
+.swal2-confirm.swal2-styled.swal2-default-outline{
+    background-color: rgb(46, 189, 110);
+}
+
+.swal2-icon.swal2-warning{
+    border-color:#ffa04d;
+    color: #ffa04d;
 }

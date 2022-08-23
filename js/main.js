@@ -1,15 +1,20 @@
 const cartInfo = document.getElementById('cart'); //Número de elementos en el carrito mostrado en la página
 const cartInfoPriceModal = document.getElementById('totalPrice');
 const cartInfoQtyModal = document.getElementById('totalQty');
-const cartModal = document.getElementById('CartModal')
-const cartDisplay = document.getElementById('guti');
+import {rangeInputs} from './rangeFilterConfig.js'
+import {rangeNumber} from './rangeFilterConfig.js'
+
 let albumList = []; //Array con los productos de mi tienda
 const carrito = JSON.parse(localStorage.getItem('carrito')) ?? [];
-let carritoPrice = carrito.reduce((acumulador, {price}) => acumulador + price, 0);
+let carritoPrice = JSON.parse(localStorage.getItem('carritoPrice')) ?? carrito.reduce((acumulador, {price}) => acumulador + price, 0);
+let carritoNumber = carrito.reduce((acumulador, {cantidad}) => acumulador + cantidad, 0);
 
 const albumsInCart = document.querySelector('.modal-body');
+const coinSelect = document.getElementById('coins');
 
-refreshCart();
+
+
+
 
 function NewAlbum(id,album,artist,year,price,img,gender){
     this.id = id;
@@ -23,9 +28,10 @@ function NewAlbum(id,album,artist,year,price,img,gender){
 
 //Agregar un album mediante la constructora
 function addAlbum(id,album,artist,year,price,img,gender){
-    let guti = new NewAlbum(id,album,artist,year,price,img,gender);
-    guti.cantidad = 1;
-    albumList.push(guti)
+    let addNewAlbum = new NewAlbum(id,album,artist,year,price,img,gender);
+    addNewAlbum.cantidad = 1;
+    addNewAlbum.gender = addNewAlbum.gender[0].toUpperCase() + addNewAlbum.gender.substring(1);
+    albumList.push(addNewAlbum)
 } 
 
 function cart(idProduct){    
@@ -38,6 +44,7 @@ function cart(idProduct){
     }else{
         objetoCarrito.cantidad++;
     }
+    
     //Actualizar precio y numero del carrito
     refreshCart();
     Toastify({
@@ -67,92 +74,72 @@ function removerProductoCart(idProducto){
 }
 //----------------------------------
 
+//----------------------------------
 //Vaciar el carrito ✓
 const btnVaciarCarrito = document.getElementById('borrarCarrito');
 btnVaciarCarrito.addEventListener('click', () => {
+
     //Sweet alert
     Swal.fire({
         title: 'Are you sure?',
         text: "Cart will be emptied",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, empty it!'
+        confirmButtonColor: 'rgb(45, 164, )',
+        cancelButtonColor: '#dc3b3b',
+        confirmButtonText: 'Yes, empty it!',
     }).then((result) => {
         if (result.isConfirmed) {
             Swal.fire(
                 'Deleted!',
-                'Cart is now empty!',
-                'success',)
+                'Cart is now empty!',)
             carrito.splice(0,carrito.length); //Vacia el carrito
             console.log('Se vació el carrito!')
-            refreshCart(); 
-            $('#CartModal').modal('hide'); //Cerrar modal, lamentablemente me funciona raro sin jquery
+            refreshCart();
         }
         })
     })
-    
-
 //----------------------------------
 
-//The Weeknd
-addAlbum(1,'Starboy', 'The Weeknd',2016,35,'img/starboy-theweeknd.jfif','pop');
-addAlbum(2,'After Hours', 'The Weeknd',2020,35,'img/afterhours-theweeknd.jfif','pop');
-addAlbum(3,'After Hours (Deluxe)', 'The Weeknd',2020,40,'img/afterhoursdeluxe-theweeknd.jfif','pop');
-addAlbum(4,'Dawn FM', 'The Weeknd',2022,38,'img/dawnFM-theweeknd.jfif','pop');
-addAlbum(5,'My Dear Melancholy,', 'The Weeknd',2018,26,'img/mdm-theweeknd.jfif','pop');
-//Harry Styles
-addAlbum(6,'Fine Line', 'Harry Styles',2019,32,'img/fineline-harrystyles.jfif','pop');
-addAlbum(7,`Harry's House`, 'Harry Styles',2022,32,'img/harryshouse-harrystyles.jfif','pop');
-addAlbum(8,'Harry Styles', 'Harry Styles',2017,28,'img/harrystyles.jfif','pop');
 //Halsey
-addAlbum(9,'hopeless fountain kingdom', 'Halsey',2022,42,'https://i.scdn.co/image/ab67616d00001e0288f2c5e4cd3649847e5139fa','pop');
-addAlbum(10,'Manic', 'Halsey',2020,40,'https://i.scdn.co/image/ab67616d00001e027636e1c9e67eaafc9f49aefd','pop');
-addAlbum(11,'BADLANDS', 'Halsey',2022,27,'https://i.scdn.co/image/ab67616d00001e02bd02d63417be256b22bffc28','pop');
+addAlbum(1,'hopeless fountain kingdom', 'Halsey',2022,42,'https://i.scdn.co/image/ab67616d00001e0288f2c5e4cd3649847e5139fa','pop');
+addAlbum(2,'Manic', 'Halsey',2020,40,'https://i.scdn.co/image/ab67616d00001e027636e1c9e67eaafc9f49aefd','pop');
+addAlbum(3,'BADLANDS', 'Halsey',2022,27,'https://i.scdn.co/image/ab67616d00001e02bd02d63417be256b22bffc28','pop');
+//Harry Styles
+addAlbum(4,'Fine Line', 'Harry Styles',2019,32,'img/fineline-harrystyles.jfif','pop');
+addAlbum(5,`Harry's House`, 'Harry Styles',2022,32,'img/harryshouse-harrystyles.jfif','pop');
+addAlbum(6,'Harry Styles', 'Harry Styles',2017,28,'img/harrystyles.jfif','pop');
+//The Weeknd
+addAlbum(7,'Starboy', 'The Weeknd',2016,35,'img/starboy-theweeknd.jfif','pop');
+addAlbum(8,'After Hours', 'The Weeknd',2020,35,'img/afterhours-theweeknd.jfif','pop');
+addAlbum(9,'After Hours (Deluxe)', 'The Weeknd',2020,40,'img/afterhoursdeluxe-theweeknd.jfif','pop');
+addAlbum(10,'Dawn FM', 'The Weeknd',2022,38,'img/dawnFM-theweeknd.jfif','pop');
+addAlbum(11,'My Dear Melancholy,', 'The Weeknd',2018,26,'img/mdm-theweeknd.jfif','pop');
+//Twenty One Pilots
+addAlbum(12,'Vessel', 'Twenty One Pilots',2013,30,'https://i.scdn.co/image/ab67616d00001e02d263500f1f97e978daa5ceb1','alternative');
+addAlbum(13,'Blurryface','Twenty One Pilots',2015,33,'	https://i.scdn.co/image/ab67616d00001e02de03bfc2991fd5bcfde65ba3','alternative');
+addAlbum(14,'Trench', 'Twenty One Pilots',2018,42,'https://i.scdn.co/image/ab67616d00001e02768828c6867cd0472fc84e4d','alternative');
+addAlbum(15,'Trench', 'Twenty One Pilots',2021,45,'https://i.scdn.co/image/ab67616d00001e0220b467550945fd123e00f0a5','alternative');
 //The Beatles
-addAlbum(12,`Abbey Road`, 'The Beatles',1969,27,'https://i.scdn.co/image/ab67616d00001e02dc30583ba717007b00cceb25','rock');
-addAlbum(13,`Help!`, 'The Beatles',1965,50,'https://i.scdn.co/image/ab67616d00001e02e3e3b64cea45265469d4cafa','rock');
-addAlbum(14,`Revolver`, 'The Beatles',1966,48,'https://i.scdn.co/image/ab67616d00001e0228b8b9b46428896e6491e97a','rock');
-addAlbum(15,`1 (Remastered)`, 'The Beatles',2000,52,'https://i.scdn.co/image/ab67616d00001e02582d56ce20fe0146ffa0e5cf','rock');
-addAlbum(16,`The Beatles 1962 - 1966`, 'The Beatles',1973,55,'https://i.scdn.co/image/ab67616d00001e025ef4660298ae29ee18799fc2','rock');
-addAlbum(17,`Let It Be`, 'The Beatles',1970,55,'https://i.scdn.co/image/ab67616d00001e0284243a01af3c77b56fe01ab1','rock');
-addAlbum(18,`Rubber Soul`, 'The Beatles',1965,50,'https://i.scdn.co/image/ab67616d00001e02ed801e58a9ababdea6ac7ce4','rock');
-addAlbum(19,`Please Please Me`, 'The Beatles',1963,50,'https://i.scdn.co/image/ab67616d00001e02dbeec63ad914c973e75c24df','rock');
-addAlbum(20,`Get Back (Rooftop Performance)`, 'The Beatles',2022,52,'https://i.scdn.co/image/ab67616d00001e0204167cd5b7ddbf5c4a563456','rock');
-
-
-
-
-
-// albumList.sort((a,b) => b.year - a.year);
-
-// Template Albums
-const albumsInStore = document.querySelector('#albums');
-const templateProduct = document.querySelector('#templateAlbum').content;
-const fragment = document.createDocumentFragment();
-
-albumList.forEach(item => {
-    templateProduct.querySelector('h2').textContent = item.album;
-    templateProduct.querySelector('img').src = item.img;
-    templateProduct.querySelector('.albumArtist').textContent = `${item.artist} - ${item.gender}`;
-    templateProduct.querySelector('.albumYear').textContent = item.year;
-    templateProduct.querySelector('.albumPrice').textContent = `$${item.price}.00`;
-    templateProduct.querySelector('button').dataset.id = item.id;
-    const clone = templateProduct.cloneNode(true);
-    fragment.appendChild(clone);
-});
-albumsInStore.appendChild(fragment);
-//----------------------------------
+addAlbum(16,`Abbey Road`, 'The Beatles',1969,27,'https://i.scdn.co/image/ab67616d00001e02dc30583ba717007b00cceb25','rock');
+addAlbum(17,`Help!`, 'The Beatles',1965,50,'https://i.scdn.co/image/ab67616d00001e02e3e3b64cea45265469d4cafa','rock');
+addAlbum(18,`Revolver`, 'The Beatles',1966,48,'https://i.scdn.co/image/ab67616d00001e0228b8b9b46428896e6491e97a','rock');
+addAlbum(19,`1 (Remastered)`, 'The Beatles',2000,52,'https://i.scdn.co/image/ab67616d00001e02582d56ce20fe0146ffa0e5cf','rock');
+addAlbum(20,`The Beatles 1962 - 1966`, 'The Beatles',1973,55,'https://i.scdn.co/image/ab67616d00001e025ef4660298ae29ee18799fc2','rock');
+addAlbum(21,`Let It Be`, 'The Beatles',1970,55,'https://i.scdn.co/image/ab67616d00001e0284243a01af3c77b56fe01ab1','rock');
+addAlbum(22,`Rubber Soul`, 'The Beatles',1965,50,'https://i.scdn.co/image/ab67616d00001e02ed801e58a9ababdea6ac7ce4','rock');
+addAlbum(23,`Please Please Me`, 'The Beatles',1963,50,'https://i.scdn.co/image/ab67616d00001e02dbeec63ad914c973e75c24df','rock');
+addAlbum(24,`Get Back`, 'The Beatles',2022,52,'https://i.scdn.co/image/ab67616d00001e0204167cd5b7ddbf5c4a563456','rock');
 
 function refreshCart(){
     //Refresh info
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    let carritoPrice = carrito.reduce((acumulador, {price, cantidad}) => acumulador + price*cantidad, 0);
-    let carritoNumber = carrito.reduce((acumulador, {cantidad}) => acumulador + cantidad, 0);
-    cartInfo.innerHTML = `${carritoNumber} - $${carritoPrice}`;
-    cartInfoPriceModal.innerHTML = `Total: $${carritoPrice}`;
+    carritoPrice = carrito.reduce((acumulador, {price, cantidad}) => acumulador + price*cantidad, 0);
+    carritoNumber = carrito.reduce((acumulador, {cantidad}) => acumulador + cantidad, 0);
+    cartInfo.innerHTML = `${carritoNumber} - $${carritoPrice} ${coinSelect.value}`;
+    cartInfoPriceModal.innerHTML = `Total: $${carritoPrice} ${coinSelect.value}`;
     cartInfoQtyModal.innerHTML = `Qty: ${carritoNumber}`;
+    localStorage.setItem('carritoPrice',JSON.stringify(carritoPrice))
 
     //Refresh cart
     albumsInCart.innerHTML = '';
@@ -162,23 +149,230 @@ function refreshCart(){
         templateCart.querySelector('h2').textContent = item.album;
         templateCart.querySelector('img').src = item.img;
         templateCart.querySelector('.albumArtist').textContent = item.artist;
-        templateCart.querySelector('.albumPrice').textContent = `$${item.price}.00`;
+        templateCart.querySelector('.albumPrice').textContent = `$${item.price}.00 ${coinSelect.value}`;
         templateCart.querySelector('.albumCantidad').textContent = `Quantity: ${item.cantidad}`;
-        templateCart.querySelector('button').setAttribute('onclick', `removerProductoCart(${item.id})`);
+        templateCart.querySelector('button i').dataset.id = item.id;
         const clone = templateCart.cloneNode(true);
         fragmentCart.appendChild(clone);
         });
     albumsInCart.appendChild(fragmentCart);
 
+    const removeBtn = document.querySelectorAll('.cartDiv button');
+    removeBtn.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            removerProductoCart(Number(e.target.getAttribute("data-id")));
+        })
+    });
+}
+//----------------------------------
+generateFilters()
+
+//Filters
+const checkboxInputs = document.querySelectorAll('.offcanvas-body input[type="checkbox"]');
+const radioInputAscending = document.querySelector('#ascending')
+const radioInputDescending = document.querySelector('#descending')
+
+let checkboxInputsChecked = 0; //Setear contador de Checked Checkbox. Si esta en 0 no hay seleccionados, >0 al menos una categoria seleccionada.
+let albumFilter = []; //Acumulador para las categorias
+
+checkboxInputs.forEach(input => {
+    input.addEventListener('change', filter)
+});
+radioInputAscending.addEventListener('change', filter)
+radioInputDescending.addEventListener('change', filter)
+rangeInputs.addEventListener('input', filter)
+rangeNumber.addEventListener('input', filter)
+
+
+function filter(e){
+    let priceFilteredAlbumList
+    if(e.target.type == 'checkbox'){//Filtra por categorias, para filtrarlas por precio y enviarlo a refreshIndex
+        if(e.target.checked){
+            checkboxInputsChecked++
+            let filtro = albumList.filter((album) => album.gender.includes(`${e.target.value}`))
+            filtro.forEach(el => {
+                albumFilter.push(el)
+            })
+        }else{
+            let indexAlbum = albumFilter.findIndex(({gender}) => gender === e.target.value);
+            let splicingLength = albumFilter.filter(album=> album.gender.includes(`${e.target.value}`))
+            albumFilter.splice([indexAlbum], splicingLength.length);
+            checkboxInputsChecked--;
+        }
+    }
+    //Filtra por precios, teniendo en cuenta si hay categorias seleccionadas
+    if(checkboxInputsChecked == 0){ 
+        priceFilteredAlbumList = albumList.filter(({price}) => price < rangeInputs.value);
+    }else{
+        priceFilteredAlbumList = albumFilter.filter(({price}) => price < rangeInputs.value);
+    }
+    //Cheque el estado de radioInputs y los ordena dependiendo su valor
+    if(radioInputAscending.checked){
+        priceFilteredAlbumList.sort((a,b) => a.price - b.price)
+    }else if(radioInputDescending.checked){
+        priceFilteredAlbumList.sort((a,b) => b.price - a.price)
+    }
+    refreshIndex(priceFilteredAlbumList)
 }
 
-//----------------------------------
-
-const addBtn = document.querySelectorAll('.albumDiv button');
-addBtn.forEach(btn => {
-    btn.addEventListener('click', () => {
-        id = Number(btn.getAttribute('data-id'));
-        cart(id)
+function refreshIndex(array){//Actualiza los albumes en pantalla segun filtros o moneda
+    const albumsInStore = document.querySelector('#albums');
+    const templateProduct = document.querySelector('#templateAlbum').content;
+    const fragment = document.createDocumentFragment();
+    
+    albumsInStore.innerHTML = '';
+    if(checkboxInputsChecked === 0 && array.length == 0){
+        albumList.forEach(item => {
+            templateProduct.querySelector('h2').textContent = item.album;
+            templateProduct.querySelector('img').src = item.img;
+            templateProduct.querySelector('.albumArtist').textContent = `${item.artist}`;
+            templateProduct.querySelector('.albumGender').textContent =item.gender;
+            templateProduct.querySelector('.albumYear').textContent = item.year;
+            templateProduct.querySelector('.albumPrice').textContent = `$${item.price}.00 ${coinSelect.value}`;
+            templateProduct.querySelector('button').dataset.id = item.id;
+            const clone = templateProduct.cloneNode(true);
+            fragment.appendChild(clone);
+        });
+        albumsInStore.appendChild(fragment);
+    }else if (checkboxInputsChecked === 0 ){
+        array.forEach(item => {
+            templateProduct.querySelector('h2').textContent = item.album;
+            templateProduct.querySelector('img').src = item.img;
+            templateProduct.querySelector('.albumArtist').textContent = `${item.artist}`;
+            templateProduct.querySelector('.albumGender').textContent =item.gender;
+            templateProduct.querySelector('.albumYear').textContent = item.year;
+            templateProduct.querySelector('.albumPrice').textContent = `$${item.price}.00 ${coinSelect.value}`;
+            templateProduct.querySelector('button').dataset.id = item.id;
+            const clone = templateProduct.cloneNode(true);
+            fragment.appendChild(clone);
+        });
+        albumsInStore.appendChild(fragment);
+    }else{
+        array.forEach(item => {
+            templateProduct.querySelector('h2').textContent = item.album;
+            templateProduct.querySelector('img').src = item.img;
+            templateProduct.querySelector('.albumArtist').textContent = `${item.artist}`;
+            templateProduct.querySelector('.albumGender').textContent =item.gender;
+            templateProduct.querySelector('.albumYear').textContent = item.year;
+            templateProduct.querySelector('.albumPrice').textContent = `$${item.price}.00 ${coinSelect.value}`;
+            templateProduct.querySelector('button').dataset.id = item.id;
+            const clone = templateProduct.cloneNode(true);
+            fragment.appendChild(clone);
+        });
+        albumsInStore.appendChild(fragment);
+    }
+    //Add to cart
+    const addBtn = document.querySelectorAll('.albumDiv button');
+    addBtn.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = Number(btn.getAttribute('data-id'));
+            cart(id)
+        })
+    });
+}
+function generateFilters(){
+    const genders = []
+    albumList.forEach(album => {
+        let a = genders.some(el => el == album.gender)
+        if(!a){
+            genders.push(album.gender)
+        }
     })
+    console.log(genders);
+    const filtersInCanvas = document.querySelector('.checkbox');
+    let acumulador = ''
+    genders.forEach(item => {
+        acumulador += `<label class="container">${item}
+                            <input type="checkbox" value='${item}'>
+                            <span class="mark"></span>
+                        </label>`
+    })
+    filtersInCanvas.innerHTML = acumulador;
+}
+
+//Coins V2
+const spanCoin = document.getElementById('filterInputCoin')
+const coins = ['ARS','USD'];
+coins.sort();
+
+//Generar optionInput
+let acumuladorCoin = ``;
+coins.forEach(el => {
+    if (el === 'USD'){
+        acumuladorCoin += `<option value='${el}' selected>${el}</option>`
+    }else{
+        acumuladorCoin += `<option value='${el}'>${el}</option>`;
+    }
 });
+coinSelect.innerHTML = acumuladorCoin;
+coinSelect.addEventListener('change', exchange);
+
+// let coinFirstTime = true;
+// console.log(carritoPrice)
+refreshCart()
+refreshIndex(albumList)
+let temp = 'USD'
+let coinState = JSON.parse(localStorage.getItem('coinState')) ?? 'USD';
+
+//Reset (temporal)
+fetch(`https://api.exchangerate-api.com/v4/latest/${temp}`)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data.rates[coinState])
+        carritoPrice *= data.rates[coinState]
+        console.log(carritoPrice)
+        carrito.forEach(album => {
+            console.log(album.price);
+            album.price /= data.rates[coinState]
+            album.price = Number((album.price).toFixed(0))
+            console.log(album.price);
+        })
+        coinState = 'USD'
+        localStorage.setItem('coinState', JSON.stringify(coinState))
+        refreshCart()
+        refreshIndex(albumList)
+
+        rangeNumber.min = 25
+        rangeNumber.max = 80
+        rangeNumber.value = 70
+
+        rangeInputs.min = 25
+        rangeInputs.max = 80
+        rangeInputs.value = 70
+
+        spanCoin.innerHTML = `$${coinState}`
+    });
+
+function exchange(){
+    // let guti = coinSelect.value
+    coinState = coinSelect.value
+    fetch(`https://api.exchangerate-api.com/v4/latest/${temp}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.rates[coinState])
+            carrito.forEach(album => {
+                album.price *= data.rates[coinState]
+                album.price = Number((album.price).toFixed(0))
+            })
+            refreshCart()
+            let exchangedAlbum = albumList;
+            exchangedAlbum.forEach(album => {
+                album.price *= data.rates[coinState]
+                album.price = Number((album.price).toFixed(0))
+            })
+            rangeNumber.min = 3500
+            rangeNumber.max = 11000
+            rangeNumber.value = 9000
+
+            rangeInputs.min = rangeNumber.min
+            rangeInputs.max = rangeNumber.max
+            rangeInputs.value = rangeNumber.value
+
+            spanCoin.innerHTML = `$${coinState}`
+
+            refreshIndex(exchangedAlbum)
+        })
+    temp = coinSelect.value
+    localStorage.setItem('coinState', JSON.stringify(coinState))
+}
 
