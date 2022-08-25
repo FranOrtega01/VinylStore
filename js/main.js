@@ -114,7 +114,7 @@ addAlbum(11,'My Dear Melancholy,', 'The Weeknd',2018,26,'img/mdm-theweeknd.jfif'
 addAlbum(12,'Vessel', 'Twenty One Pilots',2013,30,'https://i.scdn.co/image/ab67616d00001e02d263500f1f97e978daa5ceb1','alternative');
 addAlbum(13,'Blurryface','Twenty One Pilots',2015,33,'	https://i.scdn.co/image/ab67616d00001e02de03bfc2991fd5bcfde65ba3','alternative');
 addAlbum(14,'Trench', 'Twenty One Pilots',2018,42,'https://i.scdn.co/image/ab67616d00001e02768828c6867cd0472fc84e4d','alternative');
-addAlbum(15,'Trench', 'Twenty One Pilots',2021,45,'https://i.scdn.co/image/ab67616d00001e0220b467550945fd123e00f0a5','alternative');
+addAlbum(15,'Scaled And Icy', 'Twenty One Pilots',2021,45,'https://i.scdn.co/image/ab67616d00001e0220b467550945fd123e00f0a5','alternative');
 //The Beatles
 addAlbum(16,`Abbey Road`, 'The Beatles',1969,27,'https://i.scdn.co/image/ab67616d00001e02dc30583ba717007b00cceb25','rock');
 addAlbum(17,`Help!`, 'The Beatles',1965,50,'https://i.scdn.co/image/ab67616d00001e02e3e3b64cea45265469d4cafa','rock');
@@ -125,13 +125,12 @@ addAlbum(21,`Let It Be`, 'The Beatles',1970,55,'https://i.scdn.co/image/ab67616d
 addAlbum(22,`Rubber Soul`, 'The Beatles',1965,50,'https://i.scdn.co/image/ab67616d00001e02ed801e58a9ababdea6ac7ce4','rock');
 addAlbum(23,`Please Please Me`, 'The Beatles',1963,50,'https://i.scdn.co/image/ab67616d00001e02dbeec63ad914c973e75c24df','rock');
 addAlbum(24,`Get Back`, 'The Beatles',2022,52,'https://i.scdn.co/image/ab67616d00001e0204167cd5b7ddbf5c4a563456','rock');
-
+//Los Abuelos De La Nada
 addAlbum(25,`Y Amigos`, 'Los Abuelos De La Nada',2021,30,'https://i.scdn.co/image/ab67616d00001e02e24ea1fbef45aa66e2c8e73d','Rock Nacional');
 addAlbum(26,`Himnos Del Corazón`, 'Los Abuelos De La Nada',2006,30,'https://i.scdn.co/image/ab67616d00001e0237d87946cc6a3ed79d72474c','Rock Nacional');
 addAlbum(27,`En El Opera`, 'Los Abuelos De La Nada',2022,30,'https://i.scdn.co/image/ab67616d00001e02c2d670098e559803460ad345','Rock Nacional');
 addAlbum(28,`Los Abuelos De La Nada 2`, 'Los Abuelos De La Nada',2022,30,'https://i.scdn.co/image/ab67616d00001e02377cdedc05284d379cbfcee1','Rock Nacional');
 addAlbum(29,`Los Abuelos De La Nada 1`, 'Los Abuelos De La Nada',1995,30,'https://i.scdn.co/image/ab67616d00001e02ac8e4606429b148f6d2ba11d','Rock Nacional');
-
 
 
 function refreshCart(){

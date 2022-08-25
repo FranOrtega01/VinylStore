@@ -84,13 +84,21 @@
 
     <!-- Button trigger modal -->
             <div class="btn-group">
-                <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="dropdown-toggle" type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                     <i  class="fa-solid fa-gear"></i>
                 </button>
-                <ul class="dropdown-menu dropdown-menu-end">
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuClickableInside">
                     <select id="coins"></select>
                     <button class="dropdown-item" type="button">Language</button>
-                    <button class="dropdown-item" type="button">Dark/Light</button>
+                    <!-- <button id="switchTheme" class="dropdown-item" type="button">Dark/Light</button> -->
+                    <div id="switchThemeContainer">
+                        <input type="checkbox" id="switchTheme">
+                        <label for="switchTheme">
+                            <i class="fa-solid fa-moon"></i>
+                            <i class="fa-solid fa-sun"></i>
+                            <div class="circleTheme"></div>
+                        </label>
+                    </div>
                 </ul>
             </div>
         </div>
@@ -100,6 +108,9 @@
     <section id="albums" class=" col-11 row">
         <!-- Albums JS -->
     </section>
+    <footer>
+        <p>Made with <i class="fa-solid fa-heart"></i> by <a href="">Fran Ortega</a> </p>
+    </footer>
 
     <!-- Album Template -->
     <template id="templateAlbum">
@@ -108,7 +119,7 @@
                 <img class="img-fluid">
                 <h2 class="album"></h2>
                 <p class="albumArtist"></p>
-                <div class="guti">
+                <div class="albumInfo">
                     <p class="albumYear"></p>
                     <span class="albumGender"></span>
                 </div>
@@ -134,6 +145,8 @@
     <!-- Scripts -->
     <script src="js/main.js" type="module"></script>
     <script src="js/rangeFilterConfig.js" type="module"></script>
+    <script src="js/theme.js"></script>
+
         <!-- Bootstrap Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </html>

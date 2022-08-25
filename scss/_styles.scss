@@ -1,5 +1,46 @@
+.lightTheme{
+    background-color: $bodyBGLight;
+    &::-webkit-scrollbar-thumb{
+        background-color:$headerBG;
+    }
+
+    header{
+        background-color: $headerBG;
+    }
+    >i, >span{
+        color: $lightGrey
+    }
+    h1{
+        color: $bodyBG;
+    }
+    .albumDiv > div{
+        background-color: $headerBGLight;
+        *{
+            color: $bodyBG;
+        }
+        button{
+            background-color: $headerBG;
+            color: $lightGrey;
+        }
+        span{
+            opacity: .6;
+        }
+    }
+}
+
+
 body{
     background-color: $bodyBG;
+    transition:background-color 500ms;
+    &::-webkit-scrollbar{
+        width: 10px;
+        height: 30px;
+        background-color:transparent;
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color:$lightGrey;
+        border-radius: 30px;
+    }
 }
 
 header{
@@ -8,6 +49,7 @@ header{
     display: flex;
     justify-content: space-between;
     padding-inline: 2rem;
+    transition: background-color 500ms;
     button{
         all: unset;
         display: flex;
@@ -19,11 +61,13 @@ header{
         padding: 2rem 1rem;
         font-size: 2.2rem;
         cursor: pointer;
+        transition:color 500ms;
     }
     span{
         color: $lightGrey;
         font-size: 2rem;
         font-weight: 600;
+        transition:color 500ms;
     }
     >div{
         display: flex;
@@ -31,7 +75,7 @@ header{
 }
 .btn-group i{
     font-size: 2.4rem;
-    transition: all 800ms;
+    transition: all 800ms ease-out;
 }
 .rotate{
     transform: rotate(180deg);
@@ -50,7 +94,7 @@ header{
     color: $lightGrey;
     font-size: 1.5rem;
     padding: 1rem;
-    width: 90%;
+    width: 85%;
     // margin: 0;
     &:hover, &:focus{
         background-color: $headerBG;
@@ -66,6 +110,7 @@ header{
 h1{
     font-size: 5rem;
     color: $lightGrey;
+    font-weight: 700;
     text-align: center;
     margin:7rem 0;
 }
@@ -73,3 +118,47 @@ h1{
     margin: 0 auto;
 }
 
+footer{
+    margin-top: 5rem;
+    padding: 2rem;
+    *{
+        font-size: 1.2rem;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        color: $lightGrey;
+        font-weight: 700;
+    }
+    background-color: $headerBG;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i{
+        color: rgb(229, 51, 51);
+        margin-inline: .5rem;
+        animation: expand 500ms infinite;
+    }
+    a{
+        transition: all 300ms;
+        &:hover{
+            color: $violet;
+        }
+    }
+}
+@keyframes expand {
+    50%{
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+//Responsive
+@media (max-width:500px){
+    header i, header button{
+        margin-inline: 0;
+    }
+    .btn-group i{
+        margin-left: 2rem;
+    }
+}
