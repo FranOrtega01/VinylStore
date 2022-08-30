@@ -9,8 +9,12 @@ html {
 body, html {
   font-size: 10px; }
 
+@font-face {
+  font-family: guti;
+  src: url(../60sFont.ttf); }
+
 .lightTheme {
-  background-color: #cec6c6; }
+  background-color: #dacdda; }
   .lightTheme::-webkit-scrollbar-thumb {
     background-color: #1c1c1c; }
   .lightTheme header {
@@ -20,12 +24,17 @@ body, html {
   .lightTheme h1 {
     color: #212121; }
   .lightTheme .albumDiv > div {
-    background-color: #d6d6d6; }
+    background-color: #bd9898; }
     .lightTheme .albumDiv > div * {
       color: #212121; }
+    .lightTheme .albumDiv > div h2 {
+      font-weight: 700; }
     .lightTheme .albumDiv > div button {
       background-color: #1c1c1c;
       color: #e6e6e6; }
+      .lightTheme .albumDiv > div button:hover {
+        background-color: #bc4848;
+        color: #1c1c1c; }
     .lightTheme .albumDiv > div span {
       opacity: .6; }
 
@@ -96,11 +105,11 @@ header {
   overflow-y: hidden; }
 
 h1 {
-  font-size: 5rem;
+  font-size: 8rem;
   color: #e6e6e6;
-  font-weight: 700;
   text-align: center;
-  margin: 7rem 0; }
+  margin: 7rem 0;
+  font-family: guti; }
 
 #albums {
   margin: 0 auto; }
@@ -137,7 +146,7 @@ footer {
 @media (max-width: 500px) {
   header i, header button {
     margin-inline: 0; }
-  .btn-group i {
+  .btn-group > button {
     margin-left: 2rem; } }
 
 .albumDiv {
@@ -201,7 +210,7 @@ footer {
   margin: 0; }
 
 .albumYear, .albumPrice, .albumCantidad, .albumArtist, .albumInfo {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 500;
   margin: 1.2rem 0; }
 
@@ -249,7 +258,7 @@ footer {
 
 .cartDiv {
   display: flex;
-  margin-bottom: 2rem;
+  padding: 1.5rem;
   width: 100%;
   position: relative; }
   .cartDiv * {
@@ -257,13 +266,37 @@ footer {
   .cartDiv img {
     width: 30%;
     margin-right: 1rem; }
-  .cartDiv button {
+  .cartDiv::after {
     position: absolute;
-    margin: 0;
-    right: 0;
-    top: 0;
-    cursor: pointer; }
-    .cartDiv button i {
+    content: '';
+    width: 80%;
+    height: 2px;
+    background-color: #e6e6e6;
+    border-radius: 50px;
+    opacity: .1;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); }
+
+.cartActions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  margin: 0;
+  right: 0;
+  top: 1rem;
+  cursor: pointer; }
+  .cartActions button {
+    padding: 0;
+    margin: 0; }
+  .cartActions i {
+    padding: .7rem 0;
+    font-size: 1.2rem; }
+  .cartActions button:first-child {
+    padding: 0;
+    margin-bottom: 3rem; }
+    .cartActions button:first-child i {
       padding: 0;
       font-size: 1.5rem; }
 
@@ -288,9 +321,11 @@ footer {
     cursor: pointer; }
   #switchThemeContainer input {
     display: none; }
-    #switchThemeContainer input:checked + label .circleTheme {
-      background-color: #7066e0;
-      transform: translateX(24px); }
+    #switchThemeContainer input:checked + label {
+      background-color: #322662; }
+      #switchThemeContainer input:checked + label .circleTheme {
+        background-color: #7066e0;
+        transform: translateX(24px); }
   #switchThemeContainer label {
     background-color: #3e3e3e;
     display: flex;

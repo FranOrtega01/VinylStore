@@ -92,7 +92,7 @@
                     <button class="dropdown-item" type="button">Language</button>
                     <!-- <button id="switchTheme" class="dropdown-item" type="button">Dark/Light</button> -->
                     <div id="switchThemeContainer">
-                        <input type="checkbox" id="switchTheme">
+                        <input type="checkbox" checked id="switchTheme">
                         <label for="switchTheme">
                             <i class="fa-solid fa-moon"></i>
                             <i class="fa-solid fa-sun"></i>
@@ -139,7 +139,11 @@
                 <p class="albumPrice"></p>
                 <p class="albumCantidad"></p>
             </div>
-            <button><i class="fa-solid fa-xmark"></i></button>
+            <div class="cartActions">
+                <button ><i id="cartItemRemoveAll" class="fa-solid fa-xmark"></i></button>
+                <button ><i id="cartItemAdd" class="fa-solid fa-plus"></i></button>
+                <button ><i id="cartItemRemove" class="fa-solid fa-minus"></i></i></button>
+            </div>
         </div>
     </template>
     <!-- Scripts -->

@@ -22,9 +22,12 @@
     }
     input{
         display: none;
-        &:checked + label .circleTheme{
-            background-color: $violet;
-            transform: translateX(24px);
+        &:checked + label{
+        background-color: #322662;
+            .circleTheme{
+                background-color: $violet;
+                transform: translateX(24px);  
+            }
         }
     }
     label{

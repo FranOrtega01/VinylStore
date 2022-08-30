@@ -4,10 +4,13 @@ $headerBG: #1c1c1c;
 $lightGrey: rgb(230, 230, 230);
 $violet: #7066e0;
 //Light Color Palette
-$bodyBGLight: rgb(206, 198, 198);
-$headerBGLight: rgb(214, 214, 214);
+$bodyBGLight: rgb(218, 205, 218);
+$headerBGLight: rgb(189, 152, 152);
 $lightGrey: rgb(230, 230, 230);
-$violet: #7066e0;
+$violetLight: #bc4848;
+// rgb(189, 152, 152)
+// #bc4848
+// #c83d36
 
 
 //rgb(44 41 56 / 98%)
@@ -24,7 +27,10 @@ body,html{
     font-size: 10px;
 }
 
-
+@font-face {
+    font-family: guti;
+    src: url(../60sFont.ttf);
+}
 @mixin AlbumName{
     @media (min-width:1400px){
         font-size: 1.2vw;
