@@ -13,6 +13,9 @@
     h1{
         color: $bodyBG;
     }
+    .noneAlbums{
+        color: $bodyBG;
+    }
     .albumDiv > div{
         background-color: $headerBGLight;
         *{
@@ -45,6 +48,9 @@ body{
         width: 10px;
         height: 30px;
         background-color:transparent;
+        &:active{
+            width: 13px;
+        }
     }
     &::-webkit-scrollbar-thumb{
         background-color:$lightGrey;
@@ -122,6 +128,10 @@ h1{
     text-align: center;
     margin:7rem 0;
     font-family: guti;
+}
+.noneAlbums{
+    color: $lightGrey;
+    text-align: center;
 }
 #albums{
     margin: 0 auto;

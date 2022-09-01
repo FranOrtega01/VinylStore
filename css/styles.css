@@ -23,6 +23,8 @@ body, html {
     color: #e6e6e6; }
   .lightTheme h1 {
     color: #212121; }
+  .lightTheme .noneAlbums {
+    color: #212121; }
   .lightTheme .albumDiv > div {
     background-color: #bd9898; }
     .lightTheme .albumDiv > div * {
@@ -45,6 +47,8 @@ body {
     width: 10px;
     height: 30px;
     background-color: transparent; }
+    body::-webkit-scrollbar:active {
+      width: 13px; }
   body::-webkit-scrollbar-thumb {
     background-color: #e6e6e6;
     border-radius: 30px; }
@@ -110,6 +114,10 @@ h1 {
   text-align: center;
   margin: 7rem 0;
   font-family: guti; }
+
+.noneAlbums {
+  color: #e6e6e6;
+  text-align: center; }
 
 #albums {
   margin: 0 auto; }
@@ -220,6 +228,13 @@ footer {
   .albumInfo span {
     opacity: .3;
     margin-left: 1rem; }
+
+.cartAlbumInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+  .cartAlbumInfo * {
+    margin: 0; }
 
 .modal-header {
   background: #1c1c1c;

@@ -35,15 +35,17 @@
                     <p class="canvasSubtitle">Filter by price</p>
                     <input type="range" value="60" min="25" max="70" id="range">
                     <span id="filterInputCoin"></span>
-                    <input type="number" id="rangeValue">
-                    <label class="containerRadio">Ascending
-                        <input type="radio" name="price" id="ascending">
+                    <input type="number" value="60" min="25" max="70" id="rangeValue">
+                    <div class="filterSection-radio">
+                        <label class="containerRadio">Ascending
+                            <input type="radio" name="price" id="ascending">
+                            <span class="checkmarkRadio"></span>
+                        </label>
+                        <label class="containerRadio">Descending 
+                        <input type="radio" name="price" id="descending">
                         <span class="checkmarkRadio"></span>
-                    </label>
-                    <label class="containerRadio">Descending 
-                    <input type="radio" name="price" id="descending">
-                    <span class="checkmarkRadio"></span>
-                    </label>
+                        </label>
+                    </div>
                 </div>
                 <div class="filterSection">
                     <p class="canvasSubtitle">Filter by category</p>
@@ -89,7 +91,6 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuClickableInside">
                     <select id="coins"></select>
-                    <button class="dropdown-item" type="button">Language</button>
                     <!-- <button id="switchTheme" class="dropdown-item" type="button">Dark/Light</button> -->
                     <div id="switchThemeContainer">
                         <input type="checkbox" checked id="switchTheme">
@@ -103,7 +104,7 @@
             </div>
         </div>
     </header>
-    <h1>Vinyl Store</h1>
+    <!-- <h1>Vinyl Store</h1> -->
     
     <section id="albums" class=" col-11 row">
         <!-- Albums JS -->
@@ -147,7 +148,8 @@
         </div>
     </template>
     <!-- Scripts -->
-    <script src="js/main.js" type="module"></script>
+    <!-- <script src="js/main.js" type="module"></script> -->
+    <script src="js/Clean.js" type="module"></script>
     <script src="js/rangeFilterConfig.js" type="module"></script>
     <script src="js/theme.js"></script>
 
