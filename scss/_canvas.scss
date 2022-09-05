@@ -79,6 +79,9 @@ input[type="range"]::-webkit-slider-thumb {
     caret-color: $violet;
     margin-bottom: 20px;
 }
+.Guti{
+  display: inline;
+}
 .checkbox{
     display: flex;
     flex-direction: column;
@@ -91,7 +94,7 @@ input[type="range"]::-webkit-slider-thumb {
     }
 }
 
-/* Customize the label (the container) */
+//Customizar label
 .container {
     display: block;
     position: relative;
@@ -105,23 +108,18 @@ input[type="range"]::-webkit-slider-thumb {
     user-select: none;
   }
   
-  /* Hide the browser's default checkbox */
+//Esconder checkbox
   .container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
+    visibility: hidden;
+
     height: 0;
     width: 0;
   }
   
-/* Create a custom checkbox */
-/* Hide the default checkbox */
-.container input {
-    visibility: hidden;
-    cursor: pointer;
-  }
-  
-  /* Create a custom checkbox */
+//Custom Checkbox
   .mark {
     position: absolute;
     top: 5px;
@@ -140,19 +138,17 @@ input[type="range"]::-webkit-slider-thumb {
     background-color: #7066e0;
   }
   
-  /* Create the mark/indicator (hidden when not checked) */
+//Custom marker
   .mark:after {
     content: "";
     position: absolute;
     display: none;
   }
   
-  /* Show the mark when checked */
   .container input:checked ~ .mark:after {
     display: block;
   }
-  
-  /* Style the mark/indicator */
+
   .container .mark:after {
     left: 9px;
     top: 5px;
@@ -165,7 +161,6 @@ input[type="range"]::-webkit-slider-thumb {
 
   //Radio
 
-/* Customize the label (the container) */
 .containerRadio {
   display: block;
   position: relative;
@@ -179,7 +174,6 @@ input[type="range"]::-webkit-slider-thumb {
   user-select: none;
 }
 
-/* Hide the browser's default radio button */
 .containerRadio input {
   position: absolute;
   opacity: 0;
@@ -188,7 +182,6 @@ input[type="range"]::-webkit-slider-thumb {
   width: 0;
 }
 
-/* Create a custom radio button */
 .checkmarkRadio {
   position: absolute;
   top: 6px;
@@ -199,29 +192,24 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 4px;
 }
 
-/* On mouse-over, add a grey background color */
 .containerRadio:hover input ~ .checkmarkRadio {
   background-color: #ccc;
 }
 
-/* When the radio button is checked, add a blue background */
 .containerRadio input:checked ~ .checkmarkRadio {
   background-color: $violet;
 }
 
-/* Create the indicator (the dot/circle - hidden when not checked) */
 .checkmarkRadio:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-/* Show the indicator (dot/circle) when checked */
 .containerRadio input:checked ~ .checkmarkRadio:after {
   display: block;
 }
 
-/* Style the indicator (dot/circle) */
 .containerRadio .checkmarkRadio:after {
   top: 50%;
   left: 50%;

@@ -69,7 +69,7 @@
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">My cart</h5>
                             <div>
-                                <button id="borrarCarrito"><i class="fa-solid fa-trash"></i></button>
+                                <button ><i id="borrarCarrito" class="fa-solid fa-trash"></i></button>
                                 <button type="button" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                             </div>
                         </div>
@@ -79,6 +79,7 @@
                         <div class="modal-footer">
                             <span id="totalQty"></span>
                             <span id="totalPrice"></span>
+                            <a href="https://www.linkedin.com/in/franco-ortega-fo/" target="_blank">Buy</a>
                         </div>
                     </div>
                 </div>
@@ -104,7 +105,7 @@
             </div>
         </div>
     </header>
-    <!-- <h1>Vinyl Store</h1> -->
+    <h1>Vinyl Store</h1>
     
     <section id="albums" class=" col-11 row">
         <!-- Albums JS -->
@@ -112,10 +113,10 @@
     <footer>
         <p>Made with <i class="fa-solid fa-heart"></i> by <a href="">Fran Ortega</a> </p>
     </footer>
-
+    <i class="fa-solid fa-chevron-up"></i>
     <!-- Album Template -->
     <template id="templateAlbum">
-        <div class="albumDiv col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
+        <div class="albumDiv col-xl-3 col-lg-4 col-md-4 col-sm-6 col-11 ">
             <div>
                 <img class="img-fluid">
                 <h2 class="album"></h2>
@@ -148,10 +149,10 @@
         </div>
     </template>
     <!-- Scripts -->
-    <!-- <script src="js/main.js" type="module"></script> -->
-    <script src="js/Clean.js" type="module"></script>
+    <script src="js/main.js" type="module"></script>
     <script src="js/rangeFilterConfig.js" type="module"></script>
     <script src="js/theme.js"></script>
+    <script src="js/toUp.js"></script>
 
         <!-- Bootstrap Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

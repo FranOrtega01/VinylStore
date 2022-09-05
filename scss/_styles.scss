@@ -24,9 +24,6 @@
         h2{
             font-weight: 700;
         }
-        // p{
-        //     font-size: 1.4rem;
-        // }
         button{
             background-color: $headerBG;
             color: $lightGrey;
@@ -88,6 +85,7 @@ header{
         display: flex;
     }
 }
+
 .btn-group i{
     font-size: 2.4rem;
     transition: all 800ms ease-out;
@@ -119,19 +117,44 @@ header{
         background-color: $bodyBG;
     }
 }
-.modal-open{
-    overflow-y: hidden;
+.fa-chevron-up{
+    box-sizing: content-box;
+    position: fixed;
+    background-color: rgb(18, 18, 18);
+    color: $lightGrey;
+    padding: 1.4rem;
+    font-size: 1.5rem;
+    bottom: 0rem;
+    right: 1rem;
+    border-radius: 30px;
+    opacity: 0;
+    transition: all 400ms;
+    &.active{
+        cursor: pointer;
+        opacity: 1;
+        bottom: 1rem;
+        animation: up 2000ms ease-in-out infinite;
+    }
+    &:hover{
+        color: $violet;
+    }
+}
+@keyframes up {
+    50%{
+        transform: translateY(-10px);
+    }
 }
 h1{
     font-size: 8rem;
     color: $lightGrey;
     text-align: center;
-    margin:7rem 0;
+    margin:14rem 0 7rem 0;
     font-family: guti;
 }
 .noneAlbums{
     color: $lightGrey;
     text-align: center;
+    margin: 8rem 0 10rem 0
 }
 #albums{
     margin: 0 auto;
@@ -172,7 +195,7 @@ footer{
         transform: scale(1);
     }
 }
-//Responsive
+// Responsive
 @media (max-width:500px){
     header i, header button{
         margin-inline: 0;

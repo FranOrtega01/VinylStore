@@ -105,19 +105,41 @@ header {
   .dropdown-item:hover {
     background-color: #212121; }
 
-.modal-open {
-  overflow-y: hidden; }
+.fa-chevron-up {
+  box-sizing: content-box;
+  position: fixed;
+  background-color: #121212;
+  color: #e6e6e6;
+  padding: 1.4rem;
+  font-size: 1.5rem;
+  bottom: 0rem;
+  right: 1rem;
+  border-radius: 30px;
+  opacity: 0;
+  transition: all 400ms; }
+  .fa-chevron-up.active {
+    cursor: pointer;
+    opacity: 1;
+    bottom: 1rem;
+    animation: up 2000ms ease-in-out infinite; }
+  .fa-chevron-up:hover {
+    color: #7066e0; }
+
+@keyframes up {
+  50% {
+    transform: translateY(-10px); } }
 
 h1 {
   font-size: 8rem;
   color: #e6e6e6;
   text-align: center;
-  margin: 7rem 0;
+  margin: 14rem 0 7rem 0;
   font-family: guti; }
 
 .noneAlbums {
   color: #e6e6e6;
-  text-align: center; }
+  text-align: center;
+  margin: 8rem 0 10rem 0; }
 
 #albums {
   margin: 0 auto; }
@@ -236,6 +258,10 @@ footer {
   .cartAlbumInfo * {
     margin: 0; }
 
+@media (max-width: 576px) {
+  .albumDiv {
+    margin: 0 auto; } }
+
 .modal-header {
   background: #1c1c1c;
   color: #e6e6e6;
@@ -270,6 +296,19 @@ footer {
   border-top: 2px solid #212121;
   display: flex;
   justify-content: space-around; }
+  .modal-footer a {
+    all: unset;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: #e6e6e6;
+    padding: 1rem 2.5rem;
+    color: #1c1c1c;
+    font-size: 1.5rem;
+    font-weight: 700;
+    transition: all 350ms; }
+    .modal-footer a:hover {
+      background-color: #7066e0;
+      color: #e6e6e6; }
 
 .cartDiv {
   display: flex;
@@ -314,6 +353,20 @@ footer {
     .cartActions button:first-child i {
       padding: 0;
       font-size: 1.5rem; }
+
+.emptyCart {
+  animation: emptyCart 1300ms; }
+
+@keyframes emptyCart {
+  0%, 100% {
+    transform: scale(1); }
+  50% {
+    color: #dc3b3b;
+    transform: scale(1.5); }
+  33% {
+    rotate: -30deg; }
+  66% {
+    rotate: 30deg; } }
 
 #coins {
   border: none;
@@ -438,6 +491,9 @@ input[type=range]::-webkit-slider-runnable-track {
   caret-color: #7066e0;
   margin-bottom: 20px; }
 
+.Guti {
+  display: inline; }
+
 .checkbox {
   display: flex;
   flex-direction: column;
@@ -447,7 +503,6 @@ input[type=range]::-webkit-slider-runnable-track {
   .checkbox input {
     margin-right: .5rem; }
 
-/* Customize the label (the container) */
 .container {
   display: block;
   position: relative;
@@ -460,21 +515,14 @@ input[type=range]::-webkit-slider-runnable-track {
   -ms-user-select: none;
   user-select: none; }
 
-/* Hide the browser's default checkbox */
 .container input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
+  visibility: hidden;
   height: 0;
   width: 0; }
 
-/* Create a custom checkbox */
-/* Hide the default checkbox */
-.container input {
-  visibility: hidden;
-  cursor: pointer; }
-
-/* Create a custom checkbox */
 .mark {
   position: absolute;
   top: 5px;
@@ -490,17 +538,14 @@ input[type=range]::-webkit-slider-runnable-track {
 .container input:checked ~ .mark {
   background-color: #7066e0; }
 
-/* Create the mark/indicator (hidden when not checked) */
 .mark:after {
   content: "";
   position: absolute;
   display: none; }
 
-/* Show the mark when checked */
 .container input:checked ~ .mark:after {
   display: block; }
 
-/* Style the mark/indicator */
 .container .mark:after {
   left: 9px;
   top: 5px;
@@ -510,7 +555,6 @@ input[type=range]::-webkit-slider-runnable-track {
   border-width: 0 3px 3px 0;
   transform: rotate(45deg); }
 
-/* Customize the label (the container) */
 .containerRadio {
   display: block;
   position: relative;
@@ -523,7 +567,6 @@ input[type=range]::-webkit-slider-runnable-track {
   -ms-user-select: none;
   user-select: none; }
 
-/* Hide the browser's default radio button */
 .containerRadio input {
   position: absolute;
   opacity: 0;
@@ -531,7 +574,6 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 0;
   width: 0; }
 
-/* Create a custom radio button */
 .checkmarkRadio {
   position: absolute;
   top: 6px;
@@ -541,25 +583,20 @@ input[type=range]::-webkit-slider-runnable-track {
   background-color: #eee;
   border-radius: 4px; }
 
-/* On mouse-over, add a grey background color */
 .containerRadio:hover input ~ .checkmarkRadio {
   background-color: #ccc; }
 
-/* When the radio button is checked, add a blue background */
 .containerRadio input:checked ~ .checkmarkRadio {
   background-color: #7066e0; }
 
-/* Create the indicator (the dot/circle - hidden when not checked) */
 .checkmarkRadio:after {
   content: "";
   position: absolute;
   display: none; }
 
-/* Show the indicator (dot/circle) when checked */
 .containerRadio input:checked ~ .checkmarkRadio:after {
   display: block; }
 
-/* Style the indicator (dot/circle) */
 .containerRadio .checkmarkRadio:after {
   top: 50%;
   left: 50%;

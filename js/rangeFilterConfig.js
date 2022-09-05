@@ -1,9 +1,6 @@
 export const rangeInputs = document.querySelector('#range');
 export const rangeNumber = document.querySelector('#rangeValue')
 
-const radioInputAscending = document.querySelector('#ascending');
-const radioInputDescending = document.querySelector('#descending');
-
 rangeInputs.min = rangeNumber.min
 rangeInputs.max = rangeNumber.max
 rangeInputs.value = rangeNumber.value

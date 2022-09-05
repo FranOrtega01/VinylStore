@@ -1,3 +1,4 @@
+
 .modal-header{
     background: $headerBG;
     color: $lightGrey;
@@ -40,6 +41,21 @@
     border-top: 2px solid $bodyBG;
     display: flex;
     justify-content: space-around;
+    a{
+        all: unset;
+        cursor: pointer;
+        border-radius: 3px;
+        background-color: $lightGrey;
+        padding:1rem 2.5rem;
+        color: $headerBG;
+        font-size: 1.5rem;
+        font-weight: 700;
+        transition: all 350ms;
+        &:hover{
+            background-color: $violet;
+            color: $lightGrey;
+        }
+    }
 }
 
 .cartDiv{
@@ -47,7 +63,6 @@
     padding: 1.5rem ;
     width: 100%;
     position: relative;
-    // border-bottom: 1px solid $lightGrey;
     *{
         color: $lightGrey;
     }
@@ -97,3 +112,22 @@
     }
 }
 
+.emptyCart{
+    animation: emptyCart 1300ms ;
+}
+
+@keyframes emptyCart {
+    0%,100%{
+        transform: scale(1);
+    }
+    50%{
+        color: #dc3b3b;
+        transform: scale(1.5);
+    }
+    33%{
+        rotate: -30deg;
+    }
+    66%{
+        rotate: 30deg;
+    }
+}
