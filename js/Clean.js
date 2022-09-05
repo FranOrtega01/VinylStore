@@ -646,3 +646,4 @@ fetch(`https://api.exchangerate-api.com/v4/latest/${tempCoinValue}`)
         refreshAll()
     })
 
+console.log('guti');
