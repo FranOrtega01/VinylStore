@@ -595,3 +595,24 @@ input[type=range]::-webkit-slider-runnable-track {
 .swal2-icon.swal2-warning {
   border-color: #ffa04d;
   color: #ffa04d; }
+
+
+.emptyCart{
+  animation: emptyCart 1300ms ;
+}
+@keyframes emptyCart {
+    0%,100%{
+        transform: scale(1)
+    }
+    50%{
+        color: #dc3b3b;
+       transform: scale(1.5);
+    }
+    33%{
+        rotate: -30deg;
+    }
+    66%{
+        rotate: 30deg;
+    }
+
+}

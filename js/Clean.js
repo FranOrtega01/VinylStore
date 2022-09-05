@@ -58,7 +58,7 @@ function cart(idProduct){//Agregar item al carrito
     Toastify({
         text: `Added "${objeto.album}"`,
         className: "toastAlert",
-        duration: 1500,
+        duration: 1000,
         newWindow: true,
         close: false,
         avatar: `${objeto.img}`,
@@ -67,17 +67,16 @@ function cart(idProduct){//Agregar item al carrito
         stopOnFocus: false, // Prevents dismissing of toast on hover
         onClick: function(){} // Callback after click
     }).showToast();
-    console.log(objeto.price)
 }
 function removeOneItemCart(idProducto){//Remover una cantidad del carrito
     let indexCart = carrito.findIndex(({id}) => id === idProducto); //Busca el index del id indicado
     if (indexCart !== -1 && carrito[indexCart].cantidad == 1){ 
         carrito.splice([indexCart],1);
-        refreshCart();
     }else{ 
         carrito[indexCart].cantidad--;
-        refreshCart();
     }
+    refreshCart();
+
 }
 function removeAllItemCart(idProducto){//Remover todo el item del carrito
     let indexCart = carrito.findIndex(({id}) => id === idProducto); //Busca el index del id indicado
@@ -86,26 +85,46 @@ function removeAllItemCart(idProducto){//Remover todo el item del carrito
 }
 const btnVaciarCarrito = document.getElementById('borrarCarrito');
 btnVaciarCarrito.addEventListener('click', () => {//Vacia el carrito entero
-    //Sweet alert
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "Cart will be emptied",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#2ebd6e',
-        cancelButtonColor: '#dc3b3b',
-        confirmButtonText: 'Yes, empty it!',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire(
-                'Deleted!',
-                'Cart is now empty!',)
-            carrito.splice(0,carrito.length); //Vacia el carrito
-            refreshCart();
+    if(carrito.length === 0){
+        btnVaciarCarrito.classList.add('emptyCart')
+        
+        setTimeout(() => {
+            btnVaciarCarrito.classList.remove('emptyCart')
+        }, 1300);
+        Toastify({
+            text: `Cart is already empty!`,
+            className: "toastAlert",
+            duration: 900,
+            newWindow: true,
+            close: false,
+            gravity: "center", // `top` or `bottom`
+            position: "center", // `left`, `center` or `right`
+            stopOnFocus: false, // Prevents dismissing of toast on hover
+            onClick: function(){} // Callback after click
+        }).showToast();
+    }else{
+
+        //Sweet alert
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Cart will be emptied",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#2ebd6e',
+            cancelButtonColor: '#dc3b3b',
+            confirmButtonText: 'Yes, empty it!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Cart is now empty!',)
+                    carrito.splice(0,carrito.length); //Vacia el carrito
+                    refreshAll();
+                }
+            })
         }
-        })
     })
-function refreshPrice(){
+        function refreshPrice(){
     //Refresh info
     //Actualizar todos los inner 
     carritoPrice = carrito.reduce((acumulador, {price, cantidad}) => acumulador + price*cantidad, 0); 
@@ -139,18 +158,21 @@ function refreshCart(){
         });
     albumsInCart.appendChild(fragmentCart);
 
-    const removeBtn = document.querySelectorAll('.cartDiv button i');
-    removeBtn.forEach(btn => {
+    const btnActions = document.querySelectorAll('.cartDiv button i');
+    btnActions.forEach(btn => {
         btn.addEventListener('click', (e) => {//Asignar funcion a cada boton
             switch(e.target.id){
             case 'cartItemRemove':
                 removeOneItemCart(Number(e.target.getAttribute("data-id")))
+                refreshAll()
                 break;
             case 'cartItemAdd':
                 cart(Number(e.target.getAttribute("data-id")))
+                refreshAll()
                 break;
             case 'cartItemRemoveAll':
                 removeAllItemCart(Number(e.target.getAttribute("data-id")))
+                refreshAll()
                 break;
             }
         })
@@ -252,23 +274,20 @@ function exchangePrices(){
     .then(res => res.json())
     .then(data => { 
         console.log(data.rates[coinInput.value])
-        if(priceFilteredAlbumList.length === 0){
             carrito.forEach((fede) => {
                 fede.price *= data.rates[coinInput.value]
                 fede.price = fede.price.toFixed(0)
                 console.log(carrito)
             })
-            albumListCopy.forEach((album) => {
-                album.price *= data.rates[coinInput.value]
-                album.price = album.price.toFixed(0)
-            })
-            
-            refreshIndex(albumListCopy)
-            refreshAll()
-        }
-
         tempCoinValue = coinInput.value
+        refreshAll()
+
         localStorage.setItem('coinState', JSON.stringify(coinInput.value))
+        // setTimeout(() => {
+            location.reload()
+        // }, 3000);
+        // refreshIndex(albumList)
+        // refreshCart()
     })
 }
 
@@ -593,32 +612,26 @@ radioInputs.forEach(input => {
     input.addEventListener('click', uncheckRadioInput)
 })
 
-let tempCoinValue = coinInput.value
+let tempCoinValue = 'USD'
 coinInput.addEventListener('change', exchangePrices)
 coinInput.addEventListener('change', exchangeInputs)
 
-
-
-//Coin Setup
 fetch(`https://api.exchangerate-api.com/v4/latest/${tempCoinValue}`) 
     .then(res => res.json())
     .then(data => { 
-        console.log(data.rates['USD'])
-        albumListCopy = albumList.map(x => x);
-        albumListCopy.forEach((album) => {
-            album.price /= data.rates['USD']
+        console.log(data.rates[coinState]);
+        albumList.forEach((album) => {
+            album.price *= data.rates[coinState]
             album.price = album.price.toFixed(0)
-            // console.log(album.price)
-            refreshIndex(albumListCopy)
         })
 
-        rangeNumber.min = 26/data.rates['USD']
+        rangeNumber.min = 26*data.rates[coinState]
         rangeNumber.min = `${(Number(rangeNumber.min)).toFixed(0)}`
 
-        rangeNumber.max = 70/data.rates['USD']
+        rangeNumber.max = 70*data.rates[coinState]
         rangeNumber.max = `${(Number(rangeNumber.max)).toFixed(0)}`
 
-        rangeNumber.value = 60/data.rates['USD']
+        rangeNumber.value = 60*data.rates[coinState]
         rangeNumber.value = `${(Number(rangeNumber.value)).toFixed(0)}`
 
         rangeInputs.min = rangeNumber.min
@@ -629,5 +642,7 @@ fetch(`https://api.exchangerate-api.com/v4/latest/${tempCoinValue}`)
 
         tempCoinValue = coinInput.value
         localStorage.setItem('coinState', JSON.stringify(coinState))
+        refreshIndex(albumList)
+        refreshAll()
     })
 
