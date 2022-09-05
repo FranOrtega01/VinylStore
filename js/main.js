@@ -17,7 +17,7 @@ const albumList = [];
 //Coins
 const coinInput = document.getElementById('coins');
 const filterSpanCoin = document.getElementById('filterInputCoin');
-const coins = ['ARS','USD', 'GBP', 'UYU', 'EUR'];
+const coins = ['ARS','USD', 'GBP', 'UYU', 'EUR', 'MXN'];
 coins.sort()
 let coinState = JSON.parse(localStorage.getItem('coinState')) ?? 'USD';
 
@@ -278,7 +278,6 @@ function exchangePrices(){
     })
 }
 function exchangeInputs(){
-    
     fetch(`https://api.exchangerate-api.com/v4/latest/${tempCoinValue}`) 
         .then(res => res.json())
         .then(data => {
@@ -522,6 +521,87 @@ const albums = [
     },
     {
         id: 25,
+        album: "Some Girls",
+        artist:"The Rolling Stones",
+        year:1978,
+        price:45,
+        img:"https://i.scdn.co/image/ab67616d00001e0205c7aec05eabf142cc33b936",
+        gender:"rock"
+    },
+    {
+        id: 26,
+        album: "Tatto You",
+        artist:"The Rolling Stones",
+        year:1981,
+        price:52,
+        img:"https://i.scdn.co/image/ab67616d0000b27308fc42e575043a753f60d675",
+        gender:"rock"
+    },
+    {
+        id: 27,
+        album: "Sticky Fingers",
+        artist:"The Rolling Stones",
+        year:1971,
+        price:52,
+        img:"https://i.scdn.co/image/ab67616d00001e02a1d9c9969f2a7ed27e449a3c",
+        gender:"rock"
+    },
+    {
+        id: 28,
+        album: "The Dark Side Of The Moon",
+        artist:"Pink Floyd",
+        year:1973,
+        price:55,
+        img:"https://i.scdn.co/image/ab67616d00001e02ea7caaff71dea1051d49b2fe",
+        gender:"rock"
+    },
+    {
+        id: 29,
+        album: "The Wall",
+        artist:"Pink Floyd",
+        year:1979,
+        price:52,
+        img:"https://i.scdn.co/image/ab67616d00001e025d48e2f56d691f9a4e4b0bdf",
+        gender:"rock"
+    },
+    {
+        id: 30,
+        album: "Appetite For Destruction",
+        artist:"Guns N' Roses",
+        year:1987,
+        price:47,
+        img:"https://i.scdn.co/image/ab67616d00001e0268384dd85fd5e95831252f60",
+        gender:"rock"
+    },
+    {
+        id: 31,
+        album: "Use Your Illusion I",
+        artist:"Guns N' Roses",
+        year:1991,
+        price:52,
+        img:"https://i.scdn.co/image/ab67616d00001e02e44963b8bb127552ac761873",
+        gender:"rock"
+    },
+    {
+        id: 32,
+        album: "Use Your Illusion II",
+        artist:"Guns N' Roses",
+        year:1991,
+        price:52,
+        img:"https://i.scdn.co/image/ab67616d00001e0292d21aef6c0d288cc4c05973",
+        gender:"rock"
+    },
+    {
+        id: 33,
+        album: "Hopes And Fears",
+        artist:"Keane",
+        year:2004,
+        price:47,
+        img:"https://i.scdn.co/image/ab67616d00001e027d6cd95a046a3c0dacbc7d33",
+        gender:"rock"
+    },
+    {
+        id: 34,
         album: "Y Amigos",
         artist:"Los Abuelos De La Nada",
         year:2021,
@@ -530,7 +610,7 @@ const albums = [
         gender:"Nacional"
     },
     {
-        id: 26,
+        id: 35,
         album: "Himnos Del Corazón",
         artist:"Los Abuelos De La Nada",
         year:2006,
@@ -539,7 +619,7 @@ const albums = [
         gender:"Nacional"
     },
     {
-        id: 27,
+        id: 36,
         album: "En El Opera",
         artist:"Los Abuelos De La Nada",
         year:2022,
@@ -548,7 +628,7 @@ const albums = [
         gender:"Nacional"
     },
     {
-        id: 28,
+        id: 37,
         album: "Los Abuelos De La Nada 2",
         artist:"Los Abuelos De La Nada",
         year:2022,
@@ -557,14 +637,68 @@ const albums = [
         gender:"Nacional"
     },
     {
-        id: 29,
+        id: 38,
         album: "Los Abuelos De La Nada 1",
         artist:"Los Abuelos De La Nada",
         year:1995,
         price:30,
         img:"https://i.scdn.co/image/ab67616d00001e02ac8e4606429b148f6d2ba11d",
         gender:"Nacional"
-    }
+    },
+    {
+        id: 39,
+        album: "Artaud",
+        artist:"Pescado Rabioso",
+        year:1973,
+        price:36,
+        img:"https://i.scdn.co/image/ab67616d00001e0250db5a166ea23d5d6c4cd387",
+        gender:"Nacional"
+    },
+    {
+        id: 40,
+        album: "Desatormentándonos",
+        artist:"Pescado Rabioso",
+        year:1972,
+        price:26,
+        img:"https://i.scdn.co/image/ab67616d00001e02caffd78ca8efc41dfd7bca5b",
+        gender:"Nacional"
+    },
+    {
+        id: 41,
+        album: "Piano Bar",
+        artist:"Charly García",
+        year:1984,
+        price:38,
+        img:"https://i.scdn.co/image/ab67616d00001e02a89f53c13537b933a43d2600",
+        gender:"Nacional"
+    },
+    {
+        id: 42,
+        album: "Say No More",
+        artist:"Charly García",
+        year:1996,
+        price:27,
+        img:"https://i.scdn.co/image/ab67616d00001e02289461a00c39b49bfa21c3ed",
+        gender:"Nacional"
+    },
+    {
+        id: 43,
+        album: "Clics Modernos",
+        artist:"Charly García",
+        year:1983,
+        price:42,
+        img:"https://i.scdn.co/image/ab67616d00001e02b14842a87b833bc0a9339f60",
+        gender:"Nacional"
+    },
+    {
+        id: 44,
+        album: "Hello! MTV Unplugged",
+        artist:"Carly García",
+        year:1995,
+        price:50,
+        img:"https://i.scdn.co/image/ab67616d00001e02c4b6a60d993dfd149cd66265",
+        gender:"Nacional"
+    },
 ]
 albums.forEach(album => addAlbum(album.id, album.album, album.artist, album.year, album.price, album.img, album.gender));
 
